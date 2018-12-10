@@ -1,0 +1,23 @@
+﻿{
+  "Divinations": [
+    {},
+    {
+      "Id": "1",
+      "Hexagram": "䷀",
+      "Name": "The Creative.",
+      "Judgement": "The Creative works sublime success, Furthering through perseverance."
+    },
+    {
+      "Id": "2",
+      "Hexagram": "䷁",
+      "Name": "The Receptive.",
+      "Judgement": "The Receptive brings about sublime success, Furthering through the perseverance of a mare. If the superior man undertakes something and tries to lead, He goes astray;  But if he follows, he finds guidance. It is favorable to find friends in the west and south, to forego friends in the east and north. Quiet perseverance brings good fortune."
+    },
+    {
+      "Id": "3",
+      "Hexagram": "䷂",
+      "Name": "Difficulty at the Beginning.",
+      "Judgement": "Difficulty at the Beginning works supreme success, Furthering through perseverance. Nothing should be undertaken. It furthers one to appoint helpers."
+    }
+  ]
+}
