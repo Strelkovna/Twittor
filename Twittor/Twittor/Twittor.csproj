@@ -55,8 +55,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Divinations.cs" />
+    <Compile Include="Example.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TwitterHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

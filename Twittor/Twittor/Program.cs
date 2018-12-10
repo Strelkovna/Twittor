@@ -12,7 +12,6 @@ using Markov;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-
 namespace Twittor
 {
     class Program
@@ -30,14 +29,12 @@ namespace Twittor
 
         static void Main(string[] args)
         {
-            //generateRandomDailyPhraseUsingMarkov();
-            //markovTest();
-            generateRandomPrivateReply();
-            //testTwittor();
+            SendTweetToReplyToMention("1");
+            //sendTweetAboutRandomExistingDivination();
             Console.ReadKey(true);
         }
 
-        private static void testTwittor()
+        private static void sendTweetAboutRandomExistingDivination()
         {
             for (int i = 0; i < 10; i++)
             {
@@ -51,81 +48,21 @@ namespace Twittor
             _twitterService.SendTweet(new SendTweetOptions {Status = _status}, (status, response) => { });
         }
 
+        public static void SendTweetToReplyToMention(string _status)
+        {
+            string currentDirectMessage;
+            GetDirectMessageOptions GetDirectMessageOptions = new GetDirectMessageOptions();
+            currentDirectMessage = _twitterService.GetDirectMessage(GetDirectMessageOptions).Text;
+            _twitterService.SendTweet(new SendTweetOptions { Status = _status }, (status, response) => { });
+            Console.WriteLine(currentDirectMessage);
+        }
+
         public static void wait1hour()
         {
             Thread.Sleep(3600000);
         }
 
         // в ответе должно быть # + Hexagram + The Name + The Judgment (прямо из соотв колонок включая значок из колонки Hexagram)
-
-
-        public static void markovTest2()
-        {
-            var chain = new MarkovChain<string>(1);
-
-            chain.Add(
-                new[]
-                {
-                    "1", "䷀", "The Creative",
-                    "The Creative works sublime success,\r\nFurthering through perseverance..\n"
-                }, 1);
-            chain.Add(
-                new[]
-                {
-                    "2", "䷁", "The Receptive",
-                    "The Receptive brings about sublime success, \r\nFurthering through the perseverance of a mare. \r\nIf the superior man undertakes something and tries to lead, \r\nHe goes astray; \r\nBut if he follows, he finds guidance. \r\nIt is favorable to find friends in the west and south, to forego friends in the east and north.\r\nQuiet perseverance brings good fortune.\n"
-                }, 1);
-            chain.Add(
-                new[]
-                {
-                    "3", "䷂", "Difficulty at the Beginning",
-                    "Difficulty at the Beginning works supreme success,\r\nFurthering through perseverance.\r\nNothing should be undertaken. \r\nIt furthers one to appoint helpers..\n"
-                }, 1);
-
-            var rand = new Random();
-
-            for (int i = 0; i < 100; i++)
-            {
-                var sentence = string.Join(" ", chain.Chain(rand));
-                Console.WriteLine(sentence);
-            }
-
-            Console.ReadKey(true);
-        }
-
-        public static void markovTest()
-        {
-            var chain = new MarkovChain<string>(1);
-
-            chain.Add(
-                new[]
-                {
-                    "1", "䷀", "The Creative",
-                    "The Creative works sublime success,\r\nFurthering through perseverance..\n"
-                }, 1);
-            chain.Add(
-                new[]
-                {
-                    "2", "䷁", "The Receptive",
-                    "The Receptive brings about sublime success, \r\nFurthering through the perseverance of a mare. \r\nIf the superior man undertakes something and tries to lead, \r\nHe goes astray; \r\nBut if he follows, he finds guidance. \r\nIt is favorable to find friends in the west and south, to forego friends in the east and north.\r\nQuiet perseverance brings good fortune.\n"
-                }, 1);
-            chain.Add(
-                new[]
-                {
-                    "3", "䷂", "Difficulty at the Beginning",
-                    "Difficulty at the Beginning works supreme success,\r\nFurthering through perseverance.\r\nNothing should be undertaken. \r\nIt furthers one to appoint helpers..\n"
-                }, 1);
-
-            var rand = new Random();
-
-            for (int i = 0; i < 100; i++)
-            {
-                var sentence = string.Join(" ", chain.Chain(rand));
-                Console.WriteLine(sentence);
-            }
-
-            Console.ReadKey(true);
-        }
 
         public static void generateRandomDailyPhraseUsingMarkov()
         {
@@ -146,7 +83,6 @@ namespace Twittor
                 var sentence = string.Join(" ", chain.Chain(rand));
                 Console.WriteLine("Sentence#" + i + " " + sentence);
             }
-
         }
 
         public static string generateRandomPrivateReply()
@@ -162,4 +98,5 @@ namespace Twittor
             return phrase;
         }
     }
+
 }
